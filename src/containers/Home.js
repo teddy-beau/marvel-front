@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
 
 import CharacterCard from "../components/CharacterCard";
+import PageNav from "../components/PageNav";
 import Preview from "../components/Preview";
 
-const Home = ({ search }) => {
+const Home = ({ search, setDisplayModal }) => {
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(true);
 
@@ -32,10 +32,21 @@ const Home = ({ search }) => {
          <h1>Discover characters of the Marvel Universe</h1>
          <main>
             <section className="character-list">
-               <CharacterCard results={data.results} setHovered={setHovered} />
+               <CharacterCard
+                  results={data.results}
+                  setHovered={setHovered}
+                  setDisplayModal={setDisplayModal}
+               />
             </section>
             <Preview hovered={hovered} />
          </main>
+         <PageNav
+            count={data.count}
+            skip={skip}
+            setSkip={setSkip}
+            limit={limit}
+            setLimit={setLimit}
+         />
       </div>
    );
 };

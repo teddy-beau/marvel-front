@@ -16,9 +16,16 @@ body {
    font-weight: 300;
    height: 100vh;
 }
+#root {
+   position: relative;
+   min-height: 100vh;
+   display: flex;
+   flex-direction: column;
+}
 .container {
    width: 1024px;
    margin: 0 auto;
+   flex: 1 0 auto;
 }
 h1 {
    font-size: 38px;
@@ -240,7 +247,6 @@ main {
    display: flex;
    flex-wrap: wrap;
 }
-
 // CARDS
 .card {
    width: calc(50% - 20px);
@@ -299,9 +305,8 @@ main {
       }
    }
 }
-
-// PREVIEW
-.preview-section {
+// Preview
+.preview {
    position: sticky;
    top: 50px;
    width: 40%;
@@ -331,6 +336,23 @@ main {
       object-fit: cover;
    }
 }
+// Page nav:
+.page-nav {
+   margin-top: 100px;
+   display: flex;
+   justify-content: center;
+   font-family: "Roboto Condensed", sans-serif;
+   > * {
+      margin: 0 10px;
+      > span {
+         margin: 0 10px;
+         &:hover {
+            color: $red;
+            cursor: pointer;
+         }
+      }
+   }
+}
 
 //// CHARACTER PAGE
 .character-comics {
@@ -342,6 +364,7 @@ main {
 
 //// FOOTER
 footer {
+   flex-shrink: 0;
    margin-top: 30px;
    padding: 30px 0;
    background-color: $grey;

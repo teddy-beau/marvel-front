@@ -32,7 +32,7 @@ const ComicCard = ({ comics, setHovered }) => {
                   }}
                >
                   <FontAwesomeIcon icon="star" className="card-icon" />
-                  <span>SAVE</span>
+                  <span>ADD TO LIST</span>
                </div>
             </div>
          </div>

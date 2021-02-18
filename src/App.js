@@ -22,8 +22,17 @@ import {
    faSearch,
    faTimesCircle,
    faInfoCircle,
+   faChevronCircleLeft,
+   faChevronCircleRight,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch, faTimesCircle, faStar, faInfoCircle);
+library.add(
+   faSearch,
+   faTimesCircle,
+   faStar,
+   faInfoCircle,
+   faChevronCircleLeft,
+   faChevronCircleRight
+);
 
 function App() {
    const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
@@ -66,7 +75,7 @@ function App() {
                <UserFav />
             </Route>
             <Route path="/">
-               <Home search={search} />
+               <Home search={search} setDisplayModal={setDisplayModal} />
             </Route>
          </Switch>
          <Footer />

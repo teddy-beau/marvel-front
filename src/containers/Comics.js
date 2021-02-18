@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
 
 import ComicCard from "../components/ComicCard";
 import Preview from "../components/Preview";
+import PageNav from "../components/PageNav";
 
 const Comics = ({ search }) => {
    const [data, setData] = useState();
@@ -37,6 +38,13 @@ const Comics = ({ search }) => {
             </section>
             <Preview hovered={hovered} />
          </main>
+         <PageNav
+            count={data.count}
+            skip={skip}
+            setSkip={setSkip}
+            limit={limit}
+            setLimit={setLimit}
+         />
       </div>
    );
 };

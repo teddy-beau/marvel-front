@@ -34,6 +34,7 @@ const Header = ({
                      onChange={(event) => {
                         setSearch(event.target.value);
                      }}
+                     style={{ width: search && 200 }}
                   />
                </div>
                <nav>

@@ -86,7 +86,7 @@ const Modal = ({ displayModal, setDisplayModal, userCookie }) => {
             </div>
             {displayLogin ? (
                <form
-                  style={{ display: displayLogin ? "flex" : "none" }}
+                  style={{ opacity: displayLogin ? "flex" : "none" }}
                   onSubmit={handleSubmit}
                >
                   <input
