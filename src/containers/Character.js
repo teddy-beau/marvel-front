@@ -1,13 +1,16 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ComicCard from "../components/ComicCard";
+import Preview from "../components/Preview";
 
 const Character = (props) => {
    const { characterId } = useParams();
 
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(true);
+
+   const [hovered, setHovered] = useState({});
 
    useEffect(() => {
       const fetchData = async () => {
@@ -18,22 +21,19 @@ const Character = (props) => {
          setIsLoading(false);
       };
       fetchData();
-      console.log(data);
-   }, [characterId, data]);
+   }, [characterId]);
 
    return isLoading ? (
-      <div>Loading...</div>
+      <div className="container">Loading...</div>
    ) : (
       <div className="container">
-         <h1>{data.name}</h1>
-         {data.description && <p>{data.description}</p>}
-         <img
-            src={`${data.thumbnail.path}.${data.thumbnail.extension}`}
-            alt={data.name}
-         />
-         <div className="white-to-red-button">
-            <FontAwesomeIcon icon="star" /> SAVE
-         </div>
+         <h1>More about {data.name}</h1>
+         <main>
+            <section className="character-comics">
+               <ComicCard comics={data.comics} setHovered={setHovered} />
+            </section>
+            <Preview hovered={hovered} />
+         </main>
       </div>
    );
 };

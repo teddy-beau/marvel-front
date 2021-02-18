@@ -1,0 +1,19 @@
+// DESKTOP
+@media (max-width: 1280px) {
+   .container {
+      width: 96vw;
+      background-color: khaki;
+   }
+}
+
+// TABLETS
+@media (max-width: 1024px) {
+   .container {
+      width: 96vw;
+      background-color: lightcoral;
+   }
+}
+
+// SMARTPHONES
+@media (max-width: 768px) {
+}

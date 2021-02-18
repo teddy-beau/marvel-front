@@ -3,10 +3,13 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 import CharacterCard from "../components/CharacterCard";
+import Preview from "../components/Preview";
 
 const Home = () => {
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(true);
+
+   const [hovered, setHovered] = useState({});
 
    useEffect(() => {
       const fetchData = async () => {
@@ -21,7 +24,7 @@ const Home = () => {
    }, []);
 
    return isLoading ? (
-      <div>Loading...</div>
+      <div className="container">Loading...</div>
    ) : (
       <div className="container">
          <h1>
@@ -31,9 +34,12 @@ const Home = () => {
                  )} ;)`
                : "Hi there, stranger!"}
          </h1>
-         <div className="character-list">
-            <CharacterCard results={data.results} />
-         </div>
+         <main>
+            <section className="character-list">
+               <CharacterCard results={data.results} setHovered={setHovered} />
+            </section>
+            <Preview hovered={hovered} />
+         </main>
       </div>
    );
 };

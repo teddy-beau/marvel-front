@@ -1,8 +1,12 @@
 const Footer = () => {
    return (
-      <div className="container">
-         <footer>By Tedz</footer>
-      </div>
+      <footer>
+         <div className="container">
+            2021 © Made with&nbsp;<strong>React.js</strong>&nbsp;at&nbsp;
+            <strong>Le Reacteur</strong>&nbsp;by&nbsp;
+            <a href="https://teddy-beau.com/">Teddy Beau</a>.
+         </div>
+      </footer>
    );
 };
 

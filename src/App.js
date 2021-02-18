@@ -1,4 +1,5 @@
 import "./App.scss";
+import "./assets/styles/media-queries.scss";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
