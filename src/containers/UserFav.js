@@ -1,5 +1,52 @@
-const UserFav = () => {
-   return <div className="container">UserFav</div>;
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { useParams } from "react-router-dom";
+import Cookies from "js-cookie";
+
+const UserFav = (props) => {
+   const { userId } = useParams();
+   const [displayComics, setDisplayComics] = useState(false);
+
+   const [data, setData] = useState();
+   const [isLoading, setIsLoading] = useState(true);
+
+   useEffect(() => {
+      const fetchData = async () => {
+         const response = await axios.get(
+            `https://marvel-teddy.herokuapp.com/user/${userId}`,
+            {
+               headers: {
+                  Authorization: `Bearer ${Cookies.get("userToken")}`,
+               },
+            }
+         );
+         setData(response.data);
+         setIsLoading(false);
+      };
+      fetchData();
+   }, [userId]);
+
+   console.log(data);
+
+   return isLoading ? (
+      <div className="container">Loading...</div>
+   ) : (
+      <div className="container">
+         <h1>Your secret identity is safe with us, {data.username} ;)</h1>
+         <div
+            onClick={() => setDisplayComics(false)}
+            className={displayComics ? "red-button" : "white-button"}
+         >
+            Characters
+         </div>
+         <div
+            onClick={() => setDisplayComics(true)}
+            className={!displayComics ? "red-button" : "white-button"}
+         >
+            Comics
+         </div>
+      </div>
+   );
 };
 
 export default UserFav;

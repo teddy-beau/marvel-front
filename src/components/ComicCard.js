@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const ComicCard = ({ comics, setHovered }) => {
    return comics.map((comic) => {
+      let picture = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
       return (
-         <Link
+         <div
             to={`/comics/${comic._id}`}
             className="card"
             key={comic._id}
@@ -12,16 +14,28 @@ const ComicCard = ({ comics, setHovered }) => {
                   id: comic._id,
                   name: comic.title,
                   description: comic.description,
-                  picture: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
+                  picture: picture,
                });
             }}
+            onMouseOut={() => setHovered({})}
+            style={{ backgroundImage: `url(${picture})` }}
          >
-            <h2>{comic.title}</h2>
-            <img
-               src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
-               alt={comic.title}
-            />
-         </Link>
+            <div>
+               {/* <div to={`/comics/${comic._id}`}>
+                  <FontAwesomeIcon icon="info-circle" className="card-icon" />
+                  <span>MORE INFO</span>
+               </div> */}
+               <div
+                  style={{
+                     flexDirection: "row-reverse",
+                     marginLeft: "auto",
+                  }}
+               >
+                  <FontAwesomeIcon icon="star" className="card-icon" />
+                  <span>SAVE</span>
+               </div>
+            </div>
+         </div>
       );
    });
 };

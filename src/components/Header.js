@@ -1,13 +1,19 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../assets/images/marvel-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Modal from "./Modal";
+import Cookies from "js-cookie";
 
-const Header = ({ userCookie, userToken }) => {
+const Header = ({
+   userCookie,
+   userToken,
+   search,
+   setSearch,
+   displayModal,
+   setDisplayModal,
+}) => {
    const history = useHistory(); // Handle redirect upon click
-
-   const [displayModal, setDisplayModal] = useState(false);
 
    return (
       <>
@@ -20,11 +26,19 @@ const Header = ({ userCookie, userToken }) => {
                   <label htmlFor="search">
                      <FontAwesomeIcon icon="search" />
                   </label>
-                  <input type="search" id="search" placeholder="Search..." />
+                  <input
+                     type="search"
+                     id="search"
+                     placeholder="Search..."
+                     value={search}
+                     onChange={(event) => {
+                        setSearch(event.target.value);
+                     }}
+                  />
                </div>
                <nav>
                   <Link to="/">Characters</Link>
-                  <Link to="/">Comics</Link>
+                  <Link to="/comics">Comics</Link>
                   {!userToken ? (
                      <div
                         className="white-to-red-button"
@@ -34,7 +48,9 @@ const Header = ({ userCookie, userToken }) => {
                      </div>
                   ) : (
                      <>
-                        <Link to="/user/">My List</Link>
+                        <Link to={`/user/${Cookies.get("userId")}`}>
+                           My List
+                        </Link>
                         <span
                            onClick={() => {
                               userCookie(null);

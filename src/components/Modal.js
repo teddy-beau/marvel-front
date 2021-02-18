@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const Modal = ({ displayModal, setDisplayModal, userCookie }) => {
+   const history = useHistory();
+
    const [email, setEmail] = useState("");
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
@@ -33,6 +36,7 @@ const Modal = ({ displayModal, setDisplayModal, userCookie }) => {
                response.data._id,
                response.data.username
             );
+            history.push(`/user/${response.data._id}`);
          } else {
             const response = await axios.post(
                `https://marvel-teddy.herokuapp.com/user/signup`,
@@ -47,6 +51,7 @@ const Modal = ({ displayModal, setDisplayModal, userCookie }) => {
                response.data._id,
                response.data.username
             );
+            history.push(`/user/${response.data._id}`);
          }
          setDisplayModal(false);
       } catch (error) {

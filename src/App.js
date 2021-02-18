@@ -21,8 +21,9 @@ import {
    faStar,
    faSearch,
    faTimesCircle,
+   faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
-library.add(faSearch, faTimesCircle, faStar);
+library.add(faSearch, faTimesCircle, faStar, faInfoCircle);
 
 function App() {
    const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
@@ -40,21 +41,32 @@ function App() {
       }
    };
 
+   const [displayModal, setDisplayModal] = useState(false);
+
+   const [search, setSearch] = useState(""); // For search bar
+
    return (
       <Router>
-         <Header userCookie={userCookie} userToken={userToken} />
+         <Header
+            userCookie={userCookie}
+            userToken={userToken}
+            search={search}
+            setSearch={setSearch}
+            displayModal={displayModal}
+            setDisplayModal={setDisplayModal}
+         />
          <Switch>
             <Route path="/comics/:characterId">
                <Character />
             </Route>
             <Route path="/comics">
-               <Comics />
+               <Comics search={search} />
             </Route>
             <Route path="/user/:userId">
                <UserFav />
             </Route>
             <Route path="/">
-               <Home />
+               <Home search={search} />
             </Route>
          </Switch>
          <Footer />
