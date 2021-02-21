@@ -25,6 +25,7 @@ const Home = ({ search, setDisplayModal }) => {
       fetchData();
       // console.log(data);
    }, [limit, skip, search]);
+
    return isLoading ? (
       <div className="container">Loading...</div>
    ) : (

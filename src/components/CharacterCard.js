@@ -2,7 +2,7 @@
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import Cookies from "js-cookie";
-import SaveCharacter from "./SaveCharacter";
+import AddCharacter from "./AddCharacter";
 
 const CharacterCard = ({ results, setHovered, setDisplayModal }) => {
    return results.map((character) => {
@@ -29,7 +29,7 @@ const CharacterCard = ({ results, setHovered, setDisplayModal }) => {
                   <FontAwesomeIcon icon="info-circle" className="card-icon" />
                   <span>MORE INFO</span>
                </Link>
-               <SaveCharacter
+               <AddCharacter
                   character={character}
                   setDisplayModal={setDisplayModal}
                />

@@ -12,6 +12,7 @@ const Header = ({
    setSearch,
    displayModal,
    setDisplayModal,
+   setUser,
 }) => {
    const history = useHistory(); // Handle redirect upon click
 
@@ -69,6 +70,7 @@ const Header = ({
             displayModal={displayModal}
             setDisplayModal={setDisplayModal}
             userCookie={userCookie}
+            setUser={setUser}
          />
       </>
    );

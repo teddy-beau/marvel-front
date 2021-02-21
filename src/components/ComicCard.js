@@ -1,7 +1,8 @@
 // import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import AddComic from "../components/AddComic";
 
-const ComicCard = ({ comics, setHovered }) => {
+const ComicCard = ({ comics, setHovered, setDisplayModal }) => {
    return comics.map((comic) => {
       let picture = `${comic.thumbnail.path}.${comic.thumbnail.extension}`;
       return (
@@ -21,19 +22,7 @@ const ComicCard = ({ comics, setHovered }) => {
             style={{ backgroundImage: `url(${picture})` }}
          >
             <div>
-               {/* <div to={`/comics/${comic._id}`}>
-                  <FontAwesomeIcon icon="info-circle" className="card-icon" />
-                  <span>MORE INFO</span>
-               </div> */}
-               <div
-                  style={{
-                     flexDirection: "row-reverse",
-                     marginLeft: "auto",
-                  }}
-               >
-                  <FontAwesomeIcon icon="star" className="card-icon" />
-                  <span>ADD TO LIST</span>
-               </div>
+               <AddComic comic={comic} setDisplayModal={setDisplayModal} />
             </div>
          </div>
       );

@@ -36,6 +36,10 @@ library.add(
 
 function App() {
    const [userToken, setUserToken] = useState(Cookies.get("userToken") || null);
+   const [displayModal, setDisplayModal] = useState(false);
+
+   const [search, setSearch] = useState(""); // For search bar
+
    const userCookie = (token, id, username) => {
       if (token) {
          Cookies.set("userToken", token, { expires: 7 });
@@ -49,10 +53,6 @@ function App() {
          setUserToken(null);
       }
    };
-
-   const [displayModal, setDisplayModal] = useState(false);
-
-   const [search, setSearch] = useState(""); // For search bar
 
    return (
       <Router>
@@ -69,7 +69,7 @@ function App() {
                <Character />
             </Route>
             <Route path="/comics">
-               <Comics search={search} />
+               <Comics search={search} setDisplayModal={setDisplayModal} />
             </Route>
             <Route path="/user/:userId">
                <UserFav />

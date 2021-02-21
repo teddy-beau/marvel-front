@@ -6,7 +6,7 @@ import ComicCard from "../components/ComicCard";
 import Preview from "../components/Preview";
 import PageNav from "../components/PageNav";
 
-const Comics = ({ search }) => {
+const Comics = ({ search, setDisplayModal }) => {
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(true);
 
@@ -25,7 +25,6 @@ const Comics = ({ search }) => {
       };
       fetchData();
    }, [limit, skip, search]);
-   // console.log(data);
 
    return isLoading ? (
       <div className="container">Loading...</div>
@@ -34,7 +33,11 @@ const Comics = ({ search }) => {
          <h1>Browse through Marvel comics collection</h1>
          <main>
             <section className="character-list">
-               <ComicCard comics={data.results} setHovered={setHovered} />
+               <ComicCard
+                  comics={data.results}
+                  setHovered={setHovered}
+                  setDisplayModal={setDisplayModal}
+               />
             </section>
             <Preview hovered={hovered} />
          </main>

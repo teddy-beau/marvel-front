@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
+import FavCard from "../components/FavCard";
 
 const UserFav = (props) => {
    const { userId } = useParams();
@@ -24,27 +25,35 @@ const UserFav = (props) => {
          setIsLoading(false);
       };
       fetchData();
-   }, [userId]);
-
-   console.log(data);
+   }, [userId, data]);
 
    return isLoading ? (
       <div className="container">Loading...</div>
    ) : (
       <div className="container">
-         <h1>Your secret identity is safe with us, {data.username} ;)</h1>
-         <div
-            onClick={() => setDisplayComics(false)}
-            className={displayComics ? "red-button" : "white-button"}
-         >
-            Characters
-         </div>
-         <div
-            onClick={() => setDisplayComics(true)}
-            className={!displayComics ? "red-button" : "white-button"}
-         >
-            Comics
-         </div>
+         <main className="user-profile">
+            <h1>Your secret identity is safe with us, {data.username} ;)</h1>
+            <nav>
+               <div
+                  onClick={() => setDisplayComics(false)}
+                  className={!displayComics ? "red-button" : "white-button"}
+               >
+                  Characters
+               </div>
+               <div
+                  onClick={() => setDisplayComics(true)}
+                  className={displayComics ? "red-button" : "white-button"}
+               >
+                  Comics
+               </div>
+            </nav>
+            <main>
+               <FavCard
+                  list={displayComics ? data.fav_comics : data.fav_characters}
+                  displayComics={displayComics}
+               />
+            </main>
+         </main>
       </div>
    );
 };

@@ -52,6 +52,7 @@ const Modal = ({ displayModal, setDisplayModal, userCookie }) => {
                response.data.username
             );
             history.push(`/user/${response.data._id}`);
+            console.log(response.data);
          }
          setDisplayModal(false);
       } catch (error) {

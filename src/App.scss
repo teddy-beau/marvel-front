@@ -249,7 +249,7 @@ main {
 }
 // CARDS
 .card {
-   width: calc(50% - 20px);
+   width: calc((100% / 3) - 20px);
    height: 120px;
    margin: 0px 20px 20px 0px;
    transition: all 300ms;
@@ -362,6 +362,29 @@ main {
    flex-wrap: wrap;
 }
 
+//// USER PROFILE AND LIST
+.user-profile {
+   display: flex;
+   flex-direction: column;
+   > h1 {
+      text-align: center;
+   }
+   > nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+      > div {
+         margin: 0 10px;
+      }
+   }
+   > main {
+      display: flex;
+      flex-wrap: wrap;
+   }
+}
+.fav-card {
+   width: calc((100% / 5) - 20px);
+}
 //// FOOTER
 footer {
    flex-shrink: 0;
