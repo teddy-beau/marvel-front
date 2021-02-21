@@ -5,6 +5,7 @@ import axios from "axios";
 import ComicCard from "../components/ComicCard";
 import Preview from "../components/Preview";
 import PageNav from "../components/PageNav";
+import Hero from "../components/Hero";
 
 const Comics = ({ search, setDisplayModal }) => {
    const [data, setData] = useState();
@@ -26,29 +27,34 @@ const Comics = ({ search, setDisplayModal }) => {
       fetchData();
    }, [limit, skip, search]);
 
-   return isLoading ? (
-      <div className="container">Loading...</div>
-   ) : (
-      <div className="container">
-         <h1>Browse through Marvel's comics collection</h1>
-         <main>
-            <section className="character-list">
-               <ComicCard
-                  comics={data.results}
-                  setHovered={setHovered}
-                  setDisplayModal={setDisplayModal}
+   return (
+      <>
+         <Hero />
+         {isLoading ? (
+            <div className="container">Loading...</div>
+         ) : (
+            <div className="container">
+               <h1>Browse through Marvel's comics collection</h1>
+               <main>
+                  <section className="character-list">
+                     <ComicCard
+                        comics={data.results}
+                        setHovered={setHovered}
+                        setDisplayModal={setDisplayModal}
+                     />
+                  </section>
+                  <Preview hovered={hovered} />
+               </main>
+               <PageNav
+                  count={data.count}
+                  skip={skip}
+                  setSkip={setSkip}
+                  limit={limit}
+                  setLimit={setLimit}
                />
-            </section>
-            <Preview hovered={hovered} />
-         </main>
-         <PageNav
-            count={data.count}
-            skip={skip}
-            setSkip={setSkip}
-            limit={limit}
-            setLimit={setLimit}
-         />
-      </div>
+            </div>
+         )}
+      </>
    );
 };
 
