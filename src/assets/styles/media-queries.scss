@@ -1,19 +1,90 @@
+//// GLOBAL STYLES
+$black: #151515;
+$grey: #202020;
+$lightgrey: #999;
+$white: #eee;
+$brightred: #ee171f;
+$red: #dd171f;
+$darkred: #9f0013;
+$shadow: 4px 4px 0;
+$transition: all 300ms;
+
 // DESKTOP
 @media (max-width: 1280px) {
    .container {
       width: 96vw;
-      background-color: khaki;
    }
 }
 
 // TABLETS
 @media (max-width: 1024px) {
    .container {
-      width: 96vw;
-      background-color: lightcoral;
+      width: 94vw;
+   }
+   .character-list {
+      width: 50%;
+   }
+   .preview {
+      width: 50%;
+   }
+   .card {
+      width: calc((100% / 2) - 20px);
+   }
+   .fav-card {
+      width: calc((100% / 4) - 20px);
    }
 }
 
 // SMARTPHONES
 @media (max-width: 768px) {
+   .container {
+      width: 92vw;
+      > main {
+         flex-direction: column;
+      }
+   }
+   h1 {
+      font-size: 28px;
+   }
+   header > svg {
+      margin-left: auto;
+      cursor: pointer;
+   }
+   .character-list {
+      width: 100%;
+      flex-wrap: nowrap;
+      overflow-x: scroll;
+   }
+   .preview {
+      width: 100%;
+   }
+   .card {
+      width: calc((100% / 2) - 10px);
+      margin: 0px 10px 0px 10px;
+   }
+   .fav-card {
+      width: calc((100% / 2) - 20px);
+   }
+   .hide-on-smartphone {
+      display: none;
+   }
+   .display-on-smartphone {
+      display: flex;
+   }
+   .smartphone-nav {
+      position: absolute;
+      flex-direction: column;
+      align-items: flex-end;
+      top: 0;
+      right: 0;
+      padding-top: 25px;
+      padding-right: 18px;
+      z-index: 500;
+      width: 100vw;
+      height: 100vh;
+      background-color: rgba($color: $black, $alpha: 0.9);
+      > * {
+         margin-bottom: 10px;
+      }
+   }
 }

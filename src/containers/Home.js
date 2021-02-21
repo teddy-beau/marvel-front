@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
-
+// Component import
 import CharacterCard from "../components/CharacterCard";
 import PageNav from "../components/PageNav";
 import Preview from "../components/Preview";
@@ -30,7 +30,7 @@ const Home = ({ search, setDisplayModal }) => {
       <div className="container">Loading...</div>
    ) : (
       <div className="container">
-         <h1>Discover characters of the Marvel Universe</h1>
+         <h1>Browse through characters of the Marvel Universe</h1>
          <main>
             <section className="character-list">
                <CharacterCard

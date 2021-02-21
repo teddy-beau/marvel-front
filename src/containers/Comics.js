@@ -30,7 +30,7 @@ const Comics = ({ search, setDisplayModal }) => {
       <div className="container">Loading...</div>
    ) : (
       <div className="container">
-         <h1>Browse through Marvel comics collection</h1>
+         <h1>Browse through Marvel's comics collection</h1>
          <main>
             <section className="character-list">
                <ComicCard

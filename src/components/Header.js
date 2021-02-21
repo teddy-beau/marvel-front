@@ -1,9 +1,10 @@
-// import { useState } from "react";
+import { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import logo from "../assets/images/marvel-logo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Modal from "./Modal";
 import Cookies from "js-cookie";
+// Component import
+import Modal from "./Modal";
 
 const Header = ({
    userCookie,
@@ -12,9 +13,10 @@ const Header = ({
    setSearch,
    displayModal,
    setDisplayModal,
-   setUser,
 }) => {
    const history = useHistory(); // Handle redirect upon click
+
+   const [smartphoneMenu, setSmartphoneMenu] = useState(false);
 
    return (
       <>
@@ -23,7 +25,8 @@ const Header = ({
                <Link to="/">
                   <img src={logo} alt="Marvel" />
                </Link>
-               <div>
+
+               <div className="hide-on-smartphone">
                   <label htmlFor="search">
                      <FontAwesomeIcon icon="search" />
                   </label>
@@ -38,7 +41,63 @@ const Header = ({
                      style={{ width: search && 200 }}
                   />
                </div>
-               <nav>
+
+               {!smartphoneMenu ? (
+                  <FontAwesomeIcon
+                     icon="bars"
+                     className="display-on-smartphone"
+                     onClick={() => setSmartphoneMenu(true)}
+                  />
+               ) : (
+                  <>
+                     <nav className="smartphone-nav display-on-smartphone">
+                        <FontAwesomeIcon
+                           icon="times"
+                           className=""
+                           onClick={() => setSmartphoneMenu(false)}
+                        />
+                        <Link to="/" onClick={() => setSmartphoneMenu(false)}>
+                           Characters
+                        </Link>
+                        <Link
+                           to="/comics"
+                           onClick={() => setSmartphoneMenu(false)}
+                        >
+                           Comics
+                        </Link>
+                        {!userToken ? (
+                           <span
+                              onClick={() => {
+                                 setDisplayModal(true);
+                                 setSmartphoneMenu(false);
+                              }}
+                           >
+                              Sign up | Login
+                           </span>
+                        ) : (
+                           <>
+                              <Link
+                                 to={`/user/${Cookies.get("userId")}`}
+                                 onClick={() => setSmartphoneMenu(false)}
+                              >
+                                 My List
+                              </Link>
+                              <span
+                                 onClick={() => {
+                                    userCookie(null);
+                                    history.push("/");
+                                    setSmartphoneMenu(false);
+                                 }}
+                              >
+                                 Log out
+                              </span>
+                           </>
+                        )}
+                     </nav>
+                  </>
+               )}
+
+               <nav className="hide-on-smartphone">
                   <Link to="/">Characters</Link>
                   <Link to="/comics">Comics</Link>
                   {!userToken ? (
@@ -70,7 +129,6 @@ const Header = ({
             displayModal={displayModal}
             setDisplayModal={setDisplayModal}
             userCookie={userCookie}
-            setUser={setUser}
          />
       </>
    );

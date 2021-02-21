@@ -1,13 +1,14 @@
+// import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Cookies from "js-cookie";
 import axios from "axios";
 
-const FavCard = ({ list, displayComics }) => {
+const FavCard = ({ list, displayComics, setRemovedItem }) => {
    let route = "characters";
    if (displayComics) {
       route = "comics";
    }
-   // console.log("rroute", route);
+
    return list.map((item) => {
       let picture = `${item.thumbnail.path}.${item.thumbnail.extension}`;
       return (
@@ -19,8 +20,13 @@ const FavCard = ({ list, displayComics }) => {
             }}
          >
             <div>
+               <h3>{route === "characters" ? item.name : item.title}</h3>
                <div
-                  style={{ flexDirection: "row-reverse", marginLeft: "auto" }}
+                  style={{
+                     flexDirection: "row-reverse",
+                     marginBottom: "auto",
+                     alignItems: "flex-start",
+                  }}
                >
                   <FontAwesomeIcon
                      icon="times-circle"
@@ -43,12 +49,12 @@ const FavCard = ({ list, displayComics }) => {
                               }
                            );
                            console.log("response", response);
+                           setRemovedItem(item._id);
                         } catch (error) {
                            console.log(error);
                         }
                      }}
                   />
-                  <span>REMOVE FROM LIST</span>
                </div>
             </div>
          </div>

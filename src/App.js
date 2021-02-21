@@ -3,7 +3,6 @@ import "./assets/styles/media-queries.scss";
 import { useState } from "react";
 import Cookies from "js-cookie";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-// import { useState } from "react";
 
 // CONTAINER IMPORT
 import Comics from "./containers/Comics";
@@ -24,6 +23,8 @@ import {
    faInfoCircle,
    faChevronCircleLeft,
    faChevronCircleRight,
+   faBars,
+   faTimes,
 } from "@fortawesome/free-solid-svg-icons";
 library.add(
    faSearch,
@@ -31,7 +32,9 @@ library.add(
    faStar,
    faInfoCircle,
    faChevronCircleLeft,
-   faChevronCircleRight
+   faChevronCircleRight,
+   faBars,
+   faTimes
 );
 
 function App() {

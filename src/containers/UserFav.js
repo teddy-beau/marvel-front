@@ -7,6 +7,7 @@ import FavCard from "../components/FavCard";
 const UserFav = (props) => {
    const { userId } = useParams();
    const [displayComics, setDisplayComics] = useState(false);
+   const [removedItem, setRemovedItem] = useState("");
 
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(true);
@@ -25,7 +26,7 @@ const UserFav = (props) => {
          setIsLoading(false);
       };
       fetchData();
-   }, [userId, data]);
+   }, [userId, removedItem]);
 
    return isLoading ? (
       <div className="container">Loading...</div>
@@ -33,24 +34,26 @@ const UserFav = (props) => {
       <div className="container">
          <main className="user-profile">
             <h1>Your secret identity is safe with us, {data.username} ;)</h1>
+            <h2>Here is your list of saved items</h2>
             <nav>
                <div
                   onClick={() => setDisplayComics(false)}
                   className={!displayComics ? "red-button" : "white-button"}
                >
-                  Characters
+                  SAVED CHARACTERS
                </div>
                <div
                   onClick={() => setDisplayComics(true)}
                   className={displayComics ? "red-button" : "white-button"}
                >
-                  Comics
+                  SAVED COMICS
                </div>
             </nav>
             <main>
                <FavCard
                   list={displayComics ? data.fav_comics : data.fav_characters}
                   displayComics={displayComics}
+                  setRemovedItem={setRemovedItem}
                />
             </main>
          </main>
