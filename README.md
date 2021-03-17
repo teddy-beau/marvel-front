@@ -9,6 +9,7 @@ Backend repository: https://github.com/teddy-beau/marvel-back
 
 **Browsing through characters:**
 ![Screenshot 1](./_preview/marvel-screenshot-01.gif)
+
 **Searching for a character:**
 ![Screenshot 2](./_preview/marvel-screenshot-02.gif)
 
