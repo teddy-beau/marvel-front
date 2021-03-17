@@ -7,6 +7,9 @@ This project uses a Marvel API to render a list of characters and comics. One ca
 Netlify deploy: https://marvel-teddy.netlify.app/
 Backend repository: https://github.com/teddy-beau/marvel-back
 
+![Screenshot 1](./_preview/marvel-screenshot-01.gif)
+![Screenshot 2](./_preview/marvel-screenshot-02.gif)
+
 ## Dependencies (yarn)
 
 -  axios
