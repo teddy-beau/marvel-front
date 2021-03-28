@@ -52,3 +52,12 @@ Once the installation is complete, run it:
 ```
 yarn start
 ```
+
+## Additional screenshots
+
+<div align="center">
+<img src="./_preview/homepage.png" alt="Marvel Homepage" width="600" />
+<br />
+<br />
+<img src="./_preview/signup.png" alt="Marvel Signup Modal" width="600" />
+</div>
