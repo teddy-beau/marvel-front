@@ -2,15 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import ComicCard from "../components/ComicCard";
-import Preview from "../components/Preview";
+import Loader from "../components/Loader";
 
 const Character = (props) => {
    const { characterId } = useParams();
 
    const [data, setData] = useState();
    const [isLoading, setIsLoading] = useState(true);
-
-   const [hovered, setHovered] = useState({});
 
    useEffect(() => {
       const fetchData = async () => {
@@ -24,15 +22,19 @@ const Character = (props) => {
    }, [characterId]);
 
    return isLoading ? (
-      <div className="container">Loading...</div>
+      <Loader />
    ) : (
       <div className="container">
          <h1>More about {data.name}</h1>
          <main>
+            {data.description && (
+               <section>
+                  <p className="character-descr">{data.description}</p>
+               </section>
+            )}
             <section className="character-comics">
-               <ComicCard comics={data.comics} setHovered={setHovered} />
+               <ComicCard comics={data.comics} />
             </section>
-            <Preview hovered={hovered} />
          </main>
       </div>
    );

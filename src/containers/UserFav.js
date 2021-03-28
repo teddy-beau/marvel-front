@@ -3,6 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Cookies from "js-cookie";
 import FavCard from "../components/FavCard";
+import Loader from "../components/Loader";
 
 const UserFav = (props) => {
    const { userId } = useParams();
@@ -29,7 +30,7 @@ const UserFav = (props) => {
    }, [userId, removedItem]);
 
    return isLoading ? (
-      <div className="container">Loading...</div>
+      <Loader />
    ) : (
       <div className="container">
          <main className="user-profile">

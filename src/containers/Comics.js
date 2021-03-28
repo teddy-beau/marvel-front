@@ -3,7 +3,7 @@ import axios from "axios";
 // import Cookies from "js-cookie";
 
 import ComicCard from "../components/ComicCard";
-import Preview from "../components/Preview";
+import Loader from "../components/Loader";
 import PageNav from "../components/PageNav";
 import Hero from "../components/Hero";
 
@@ -13,8 +13,6 @@ const Comics = ({ search, setDisplayModal }) => {
 
    const [skip, setSkip] = useState(0); // For page nav
    const [limit, setLimit] = useState(100); // For page nav
-
-   const [hovered, setHovered] = useState({});
 
    useEffect(() => {
       const fetchData = async () => {
@@ -31,7 +29,7 @@ const Comics = ({ search, setDisplayModal }) => {
       <>
          <Hero />
          {isLoading ? (
-            <div className="container">Loading...</div>
+            <Loader />
          ) : (
             <div className="container">
                <h1>Browse through Marvel's comics collection</h1>
@@ -39,11 +37,9 @@ const Comics = ({ search, setDisplayModal }) => {
                   <section className="character-list">
                      <ComicCard
                         comics={data.results}
-                        setHovered={setHovered}
                         setDisplayModal={setDisplayModal}
                      />
                   </section>
-                  <Preview hovered={hovered} />
                </main>
                <PageNav
                   count={data.count}

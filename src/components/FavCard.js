@@ -13,14 +13,13 @@ const FavCard = ({ list, displayComics, setRemovedItem }) => {
       let picture = `${item.thumbnail.path}.${item.thumbnail.extension}`;
       return (
          <div
-            className="card fav-card"
+            className="card"
             key={item._id}
             style={{
                backgroundImage: `url(${picture})`,
             }}
          >
             <div>
-               <h3>{route === "characters" ? item.name : item.title}</h3>
                <div
                   style={{
                      flexDirection: "row-reverse",
@@ -56,6 +55,7 @@ const FavCard = ({ list, displayComics, setRemovedItem }) => {
                      }}
                   />
                </div>
+               <h2>{route === "characters" ? item.name : item.title}</h2>
             </div>
          </div>
       );

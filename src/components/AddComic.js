@@ -4,7 +4,7 @@ import Cookies from "js-cookie";
 
 const AddComic = ({ comic, setDisplayModal }) => {
    return (
-      <div style={{ flexDirection: "row-reverse", marginBottom: "auto" }}>
+      <div style={{ flexDirection: "row-reverse", marginLeft: "auto" }}>
          <FontAwesomeIcon
             icon="star"
             className="card-icon"
